@@ -184,4 +184,12 @@ class TestProductModel(unittest.TestCase):
         found = Product.find_by_category(category)
         self.assertEqual(found.count(),count)
         for product in found:
+<<<<<<< HEAD
             self.assertEqual(product.category,category)
+=======
+            self.assertEqual(product.category,category)
+
+
+
+
+>>>>>>> 367a93ad103a1fdbcdbab3c7ff27097eae92301e
