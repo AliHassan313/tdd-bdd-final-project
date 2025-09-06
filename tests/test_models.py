@@ -143,7 +143,7 @@ class TestProductModel(unittest.TestCase):
 
     def test_list_all_products(self):
         products = Product.all()
-        self.assertEqual(len(Products),0)
+        self.assertEqual(len(products),0)
         for _ in range(5):
             product = ProductFactory()
             product.create()
@@ -171,8 +171,8 @@ class TestProductModel(unittest.TestCase):
         count = len([product for product in products if product.available == available])
         found = Product.find_by_availability(available)
         self.assertEqual(found.count(),count)
-        for product in products:
-            self.assertEqual(product.available,availableo
+        for product in found:
+            self.assertEqual(product.available,available)
 
     
     def test_find_producty_by_category(self):
@@ -185,8 +185,3 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(found.count(),count)
         for product in found:
             self.assertEqual(product.category,category)
-fnid_
-
-
-
-
