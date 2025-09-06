@@ -110,11 +110,10 @@ class TestProductModel(unittest.TestCase):
         product.create()
         self.assertIsNotNone(product.id)
         found_product = Product.find(product.id)
-        self.assertEqual(found_product.id,product.id)
+        self.assertEqual(found_product.id, product.id)
         self.assertEqual(found_product.name, product.name)
-        self.assertEqual(found_product.description,product.description)
-        self.assertEqual(found_product.price,product.price)
-
+        self.assertEqual(found_product.description, product.description)
+        self.assertEqual(found_product.price, product.price)
 
     def test_update_a_product(self):
         product = ProductFactory()
@@ -124,32 +123,28 @@ class TestProductModel(unittest.TestCase):
         product.description = "testing"
         original_id = product.id
         product.update()
-        self.assertEqual(product.id,original_id)
-        self.assertEqual(product.description,"testing")
+        self.assertEqual(product.id, original_id)
+        self.assertEqual(product.description, "testing")
         products = Product.all()
-        self.assertEqual(len(products),1)
+        self.assertEqual(len(products), 1)
         self.assertEqual(products[0].id, original_id)
-        self.assertEqual(products[0].description,"testing")
-
+        self.assertEqual(products[0].description, "testing")
 
     def test_delete_a_product(self):
         product = ProductFactory()
         product.create()
-        self.assertEqual(len(Product.all()),1)
+        self.assertEqual(len(Product.all()), 1)
         product.delete()
-        self.assertEqual(len(Product.all()),0)
-
-
+        self.assertEqual(len(Product.all()), 0)
 
     def test_list_all_products(self):
         products = Product.all()
-        self.assertEqual(len(products),0)
+        self.assertEqual(len(products), 0)
         for _ in range(5):
             product = ProductFactory()
             product.create()
         products = Product.all()
-        self.assertEqual(len(products),5)
-
+        self.assertEqual(len(products), 5)
 
     def test_find_a_product(self):
         products = ProductFactory.create_batch(5)
@@ -158,10 +153,9 @@ class TestProductModel(unittest.TestCase):
         name = products[0].name
         count = len([product for product in products if product.name == name])
         found = Product.find_by_name(name)
-        self.assertEqual(found.count(),count)
+        self.assertEqual(found.count(), count)
         for product in found:
-            self.assertEqual(product.name,name)
-
+            self.assertEqual(product.name, name)
 
     def test_find_product_by_availability(self):
         products = ProductFactory.create_batch(10)
@@ -170,11 +164,10 @@ class TestProductModel(unittest.TestCase):
         available = products[0].available
         count = len([product for product in products if product.available == available])
         found = Product.find_by_availability(available)
-        self.assertEqual(found.count(),count)
+        self.assertEqual(found.count(), count)
         for product in found:
-            self.assertEqual(product.available,available)
+            self.assertEqual(product.available, available)
 
-    
     def test_find_producty_by_category(self):
         products = ProductFactory.create_batch(10)
         for product in products:
@@ -182,14 +175,6 @@ class TestProductModel(unittest.TestCase):
         category = products[0].category
         count = len([product for product in products if product.category == category])
         found = Product.find_by_category(category)
-        self.assertEqual(found.count(),count)
+        self.assertEqual(found.count(), count)
         for product in found:
-<<<<<<< HEAD
-            self.assertEqual(product.category,category)
-=======
-            self.assertEqual(product.category,category)
-
-
-
-
->>>>>>> 367a93ad103a1fdbcdbab3c7ff27097eae92301e
+            self.assertEqual(product.category, category)
